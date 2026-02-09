@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import '../App.css';
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -19,15 +20,12 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        // 1. Validate matching passwords (FRS Requirement)
         if (formData.password !== formData.confirmPassword) {
             alert("Passwords do not match!");
             return;
         }
 
         try {
-            // 2. Payload matches your current DB columns
             const payload = {
                 firstName: formData.firstName,
                 lastName: formData.lastName,
@@ -42,30 +40,28 @@ const Register = () => {
                 navigate('/login');
             }
         } catch (error) {
-            // If this still says "Server Error", check your IntelliJ console for SQL errors
             alert("Registration Failed: " + (error.response?.data || "Server Error"));
         }
     };
 
     return (
-        <div style={{ maxWidth: '400px', margin: '50px auto', padding: '20px', border: '1px solid #ccc', borderRadius: '8px' }}>
-            <h2 style={{ textAlign: 'center' }}>Create Account</h2>
+        <div className="auth-container">
+            <h2>Create Account</h2>
             <form onSubmit={handleSubmit}>
-                <input type="text" name="firstName" placeholder="First Name" onChange={handleChange} required style={inputStyle} />
-                <input type="text" name="lastName" placeholder="Last Name" onChange={handleChange} required style={inputStyle} />
-                <input type="email" name="email" placeholder="Email" onChange={handleChange} required style={inputStyle} />
-                <input type="password" name="password" placeholder="Password" onChange={handleChange} required style={inputStyle} />
+                <input type="text" name="firstName" placeholder="First Name" onChange={handleChange} required />
+                <input type="text" name="lastName" placeholder="Last Name" onChange={handleChange} required />
+                <input type="email" name="email" placeholder="Email" onChange={handleChange} required />
+                <input type="password" name="password" placeholder="Password" onChange={handleChange} required />
+                <input type="password" name="confirmPassword" placeholder="Confirm Password" onChange={handleChange} required />
                 
-                {/* Additional Confirmation Password Text Box */}
-                <input type="password" name="confirmPassword" placeholder="Confirm Password" onChange={handleChange} required style={inputStyle} />
-                
-                <button type="submit" style={buttonStyle}>Register</button>
+                <button type="submit">Register</button>
             </form>
+            {/* Navigates back to Login page */}
+            <p className="link-text">
+                Already have an account? <Link to="/login">Login here</Link>
+            </p>
         </div>
     );
 };
-
-const inputStyle = { display: 'block', width: '100%', marginBottom: '10px', padding: '10px', boxSizing: 'border-box' };
-const buttonStyle = { width: '100%', padding: '10px', backgroundColor: '#007bff', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' };
 
 export default Register;
