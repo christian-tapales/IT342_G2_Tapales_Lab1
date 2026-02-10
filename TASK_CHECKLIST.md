@@ -1,16 +1,26 @@
-# Lab 2 Task Checklist
+IT342_G2_Tapales_Lab1: Development Checklist
+🏗️ Phase 1: Backend Infrastructure (Spring Boot)
+[x] Project Initialization (Java 17/19) | 3802190
 
-## DONE
-[x] Backend Repository Structure (IT342_G2_Tapales_Lab1) - Hash: 3802190
-[x] Spring Boot Initialization with Java 17/19 - Hash: 3802190
-[x] Database connection (MySQL userauth_db) - Hash: 3802190
-[x] Password encryption (BCrypt) - Hash: 3802190
-[x] User Entity (firstName, lastName, email, password) - Hash: 3802190
-[x] POST /api/auth/register endpoint - Hash: 3802190
-[x] POST /api/auth/login endpoint - Hash: 3802190
-[x] Web Application - ReactJS setup (CRA) - Hash: 81f4dbc
-[x] Implement Register Page UI (with Password Confirmation) - Hash: 81f4dbc
-[x] Implement Login Page UI - Hash: 81f4dbc
-[x] Implement Dashboard/Profile Page - Hash: 81f4dbc
-[x] Logout functionality - Hash: 81f4dbc
-[x] Update FRS PDF with Web UI Screenshots - Hash: 81f4dbc
+[x] Database Configuration: MySQL (userauth_db) | 3802190
+
+[x] Security Implementation: BCrypt Password Encryption | 3802190
+
+[x] Domain Model: User Entity (Name, Email, Password) | 3802190
+
+🔌 Phase 2: API Development
+[x] Auth Service: POST /api/auth/register | 3802190
+
+[x] Auth Service: POST /api/auth/login | 3802190
+
+💻 Phase 3: Frontend Implementation (ReactJS)
+[x] Environment Setup: Create React App (CRA) | 81f4dbc
+
+[x] User Onboarding: Register Page with Validation | 81f4dbc
+
+[x] Authentication UI: Login Page | 81f4dbc
+
+[x] User Session: Dashboard/Profile View & Logout | 81f4dbc
+
+📄 Phase 4: Documentation & Delivery
+[x] Functional Requirements (FRS): Updated with UI Screenshots | 81f4dbc
