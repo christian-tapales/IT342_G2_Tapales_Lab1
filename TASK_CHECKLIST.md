@@ -16,11 +16,11 @@ IT342_G2_Tapales_Lab1: Development Checklist
 💻 Phase 3: Frontend Implementation (ReactJS)
 [x] Environment Setup: Create React App (CRA) | 81f4dbc
 
-[x] User Onboarding: Register Page with Validation | 81f4dbc
+[x] User Onboarding: Register Page with Validation | f2d7b24
 
-[x] Authentication UI: Login Page | 81f4dbc
+[x] Authentication UI: Login Page | f2d7b24
 
-[x] User Session: Dashboard/Profile View & Logout | 81f4dbc
+[x] User Session: Dashboard/Profile View & Logout | f2d7b24
 
 📄 Phase 4: Documentation & Delivery
-[x] Functional Requirements (FRS): Updated with UI Screenshots | 81f4dbc
+[x] Functional Requirements (FRS): Updated with UI Screenshots | f2d7b24
