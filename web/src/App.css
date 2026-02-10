@@ -1,56 +1,105 @@
 /* src/App.css */
 body {
-  background-color: #f4f7f6;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #0b0d0f; /* Deep midnight black */
+  color: #e0e0e0;
+  font-family: 'Courier New', Courier, monospace; /* Digital/Agency feel */
   margin: 0;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: center; /* Centers horizontally */
+  align-items: center;     /* Centers vertically */
   min-height: 100vh;
 }
 
+/* Add or update these to handle the link color */
+.link-text {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #888; /* Dimmer text for the question */
+}
+
+.link-text a {
+  color: #d4af37; /* James Bond Gold */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.link-text a:hover {
+  text-decoration: underline;
+  color: #b8962e; /* Darker gold on hover */
+}
+
+/* Auth Containers (Login/Register) */
 .auth-container {
-  background: #ffffff;
+  background: #1a1d21;
   padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  border-radius: 4px; /* Sharper edges for a formal look */
+  border-left: 4px solid #d4af37; /* Gold accent */
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
   width: 100%;
   max-width: 400px;
+  margin: auto;
   text-align: center;
 }
 
-h2 { color: #333; margin-bottom: 25px; font-weight: 600; }
+h2 { color: #fff; text-transform: uppercase; letter-spacing: 3px; }
 
 input {
+  background: #25292e;
+  color: #fff;
   width: 100%;
   padding: 12px;
   margin-bottom: 15px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
+  border: 1px solid #3d444d;
+  border-radius: 0px;
   box-sizing: border-box;
-  font-size: 14px;
-}
-
-input:focus {
-  outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
 }
 
 button {
   width: 100%;
   padding: 12px;
-  background-color: #007bff;
-  color: white;
+  background-color: #d4af37; /* Bond Gold */
+  color: #000;
   border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  font-weight: 600;
+  font-weight: bold;
+  text-transform: uppercase;
   cursor: pointer;
-  transition: background-color 0.2s;
 }
 
-button:hover { background-color: #0056b3; }
+button:hover { background-color: #b8962e; }
 
-.link-text { margin-top: 20px; font-size: 14px; color: #666; }
-.link-text a { color: #007bff; text-decoration: none; font-weight: bold; }
+/* Sidebar Layout */
+.dashboard-layout {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  background: #111418;
+  border-right: 1px solid #333;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+}
+
+.sidebar-btn {
+  background: none;
+  color: #888;
+  text-align: left;
+  padding: 15px 25px;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.sidebar-btn.active {
+  color: #d4af37;
+  border-left: 3px solid #d4af37;
+  background: #1a1d21;
+}
+
+.main-content {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+}
