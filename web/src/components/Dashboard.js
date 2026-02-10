@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../App.css';
 
@@ -6,16 +6,28 @@ const Dashboard = () => {
     const navigate = useNavigate();
     const [activeTab, setActiveTab] = useState('main'); // State to toggle views
 
+    useEffect(() => {
+        const loggedInUser = localStorage.getItem('user');
+        if(!loggedInUser){
+            //No credentials found - Redirect to Login
+            navigate('/login');
+        }
+    },[navigate])
+
     const user = JSON.parse(localStorage.getItem('user')) || {
         firstName: 'Agent',
         lastName: 'Unknown',
         email: 'Classified'
     };
 
+
     const handleLogout = () => {
         localStorage.removeItem('user');
         navigate('/login');
     };
+
+    // If no user, return null to hide the dashboard while redirecting
+    if (!localStorage.getItem('user')) return null;
 
     return (
         <div className="dashboard-layout">
