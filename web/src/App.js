@@ -14,6 +14,8 @@ function App() {
         
         {/* Automatically sends users to Login when they open the app */}
         <Route path="/" element={<Navigate to="/login" />} />
+        {/* 🕵️ THE WILDCARD ROUTE: Catch anything else and send to Login */}
+        <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </Router>
   );

@@ -10,8 +10,10 @@ const Login = () => {
     const handleLogin = async (e) => {
     e.preventDefault();
     try {
-        const response = await axios.post('http://localhost:8080/api/auth/login', credentials);
-        
+        // Add { withCredentials: true } as the third argument
+        const response = await axios.post('http://localhost:8080/api/auth/login', credentials, {
+            withCredentials: true 
+        });
         // Check if response.data is an object containing firstName
         if (response.data && response.data.firstName) {
             localStorage.setItem('user', JSON.stringify(response.data));

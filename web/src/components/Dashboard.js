@@ -1,18 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../App.css';
+import axios from 'axios';
 
 const Dashboard = () => {
     const navigate = useNavigate();
-    const [activeTab, setActiveTab] = useState('main'); // State to toggle views
-
+    const [activeTab, setActiveTab] = useState('main');
+    const [loading, setLoading] = useState(true);
+    // 🕵️ ACTIVE SECURITY CHECK
     useEffect(() => {
-        const loggedInUser = localStorage.getItem('user');
-        if(!loggedInUser){
-            //No credentials found - Redirect to Login
-            navigate('/login');
-        }
-    },[navigate])
+        const verifySession = async () => {
+            try {
+                // This triggers the GET /api/auth/me request in your Network tab
+                const response = await axios.get('http://localhost:8080/api/auth/me', {
+                    withCredentials: true // CRITICAL: Sends the JSESSIONID cookie back to the server
+                });
+                
+                // If successful, update localStorage with the most fresh data from the DB
+                localStorage.setItem('user', JSON.stringify(response.data));
+                setLoading(false);
+            } catch (err) {
+                // If the cookie is missing or session expired (401), kick them out
+                console.error("Unauthorized: Session badge invalid.");
+                localStorage.removeItem('user');
+                navigate('/login');
+            }
+        };
+
+        verifySession();
+    }, [navigate]);
 
     const user = JSON.parse(localStorage.getItem('user')) || {
         firstName: 'Agent',
@@ -20,18 +36,30 @@ const Dashboard = () => {
         email: 'Classified'
     };
 
+    // New handleLogout that talks to the server
+const handleLogout = async () => {
+    try {
+        await axios.post('http://localhost:8080/api/auth/logout', {}, { withCredentials: true });
+    } catch (err) {
+        console.error("Logout failed on server");
+    }
+    localStorage.removeItem('user');
+    navigate('/login');
+};
 
-    const handleLogout = () => {
-        localStorage.removeItem('user');
-        navigate('/login');
-    };
+    // CRITICAL: If still loading, don't show the dashboard content!
+    if (loading) {
+        return (
+            <div style={{ backgroundColor: '#0b0d0f', color: '#d4af37', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <h1>SCANNING AGENT CREDENTIALS...</h1>
+            </div>
+        );
+    }
 
-    // If no user, return null to hide the dashboard while redirecting
     if (!localStorage.getItem('user')) return null;
 
     return (
         <div className="dashboard-layout">
-            {/* LEFT SIDEBAR */}
             <div className="sidebar">
                 <h2 style={{ fontSize: '1.2rem', padding: '0 25px' }}>MINI APP</h2>
                 <button 
@@ -56,7 +84,6 @@ const Dashboard = () => {
                 </button>
             </div>
 
-            {/* MAIN CONTENT AREA */}
             <div className="main-content">
                 {activeTab === 'main' ? (
                     <div className="fade-in">
@@ -74,7 +101,6 @@ const Dashboard = () => {
                         <hr style={{ borderColor: '#333' }} />
                         <div style={{ display: 'flex', gap: '30px', marginTop: '20px' }}>
                             <div style={{ width: '150px', height: '180px', background: '#333', border: '2px solid #d4af37' }}>
-                                {/* Placeholder for Agent Photo */}
                                 <p style={{ fontSize: '10px', textAlign: 'center', marginTop: '70px' }}>PHOTO CLASSIFIED</p>
                             </div>
                             <div>
