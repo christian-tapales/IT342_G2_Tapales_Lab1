@@ -31,13 +31,13 @@ IT342_G2_Tapales_Lab1: Development Checklist
 
 [x] Networking Layer: Manifest Permissions & Cleartext Traffic | 25a38f3
 
-[x] Data Model: Kotlin User Data Class
+[x] Data Model: Kotlin User Data Class | aa1a05c
 
-[ ] API Interface: AuthApiService with Retrofit Endpoints
+[x] API Interface: AuthApiService with Retrofit Endpoints | aa1a05c
 
-[ ] Session Management: CookieJar & RetrofitClient Setup
+[x] Session Management: CookieJar & RetrofitClient Setup | aa1a05c
 
-[ ] UI Layer: Login & Register Activities with ViewBinding
+[x] UI Layer: Login & Register Activities with ViewBinding | aa1a05c
 
 📄 Phase 5: Documentation & Delivery
 
