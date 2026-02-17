@@ -6,6 +6,9 @@ plugins {
 android {
     namespace = "com.tapales.userauth"
     compileSdk = 34
+    buildFeatures {
+        viewBinding = true
+    }
 
     defaultConfig {
         applicationId = "com.tapales.userauth"
@@ -42,4 +45,10 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    // Networking
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    // Cookie/Session Management
+    implementation("com.squareup.okhttp3:okhttp-urlconnection:4.12.0")
 }
