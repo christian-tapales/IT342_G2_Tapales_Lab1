@@ -39,8 +39,19 @@ class MainActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<User>, response: Response<User>) {
                     if (response.isSuccessful) {
                         val user = response.body()
-                        Toast.makeText(this@MainActivity, "Welcome ${user?.firstName}!", Toast.LENGTH_SHORT).show()
-                        // Logic for navigating to a Dashboard can go here
+
+                        // 1. Create the Intent to move from Login to Dashboard
+                        val intent = Intent(this@MainActivity, DashboardActivity::class.java)
+
+                        // 2. "Pack the suitcase" with the User data
+                        // The key "USER_DATA" must match what you use to "unpack" it in DashboardActivity
+                        intent.putExtra("USER_DATA", user)
+
+                        // 3. Launch the Dashboard
+                        startActivity(intent)
+
+                        // 4. Important: Finish MainActivity so the user can't go "back" to the login screen
+                        finish()
                     } else {
                         Toast.makeText(this@MainActivity, "Login Failed", Toast.LENGTH_SHORT).show()
                     }
